@@ -1,0 +1,76 @@
+# themes
+# import = ["~/.config/alacritty/themes/themes/palenight.toml"]
+# import = ["~/.config/alacritty/themes/themes/moonlight_ii_vscode.toml"]
+# import = ["~/.config/alacritty/themes/themes/nightfox.toml"]
+# import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
+# import = ["~/.config/alacritty/themes/themes/moonlight_kc.toml"]
+import = ["~/.config/alacritty/themes/themes/ayu_mirage.toml"]
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+blink_timeout = 0
+
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[font]
+size = 13
+
+[font.bold]
+style = "Bold"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+[font.italic]
+style = "Italic"
+
+[font.normal]
+family = "MesloLGS NF"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+chars = "\u001BF"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BB"
+key = "Left"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "V"
+mode = "~Search"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Command"
+
+[scrolling]
+history = 4096
+multiplier = 3
+
+[window]
+# blur = true
+decorations = "Transparent"
+dynamic_title = true
+# opacity = 1
+option_as_alt = "OnlyLeft"
+title = "Alacritty"
+padding = { x = 16, y = 26 }
+# padding = { x = 16, y = 16 }
+# padding = { x = 8, y = 0 }
