@@ -3,6 +3,7 @@ select = ["E4", "E7", "E9", "F", "W", "C90"] # add W as Flake8
 
 [format]
 quote-style = "single"
+indent-style = "space"
 
 [pydocstyle]
 convention = "numpy"
