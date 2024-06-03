@@ -1,0 +1,8 @@
+{
+    /* disable ^/ key and others */
+    "^/" = "noop:";
+    "@^\UF701" = "noop:";
+    "@^\UF702" = "noop:";
+    "@^\UF703" = "noop:";
+    "@~^\UF701" = "noop:";
+}
