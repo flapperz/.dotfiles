@@ -1,0 +1,24 @@
+{
+    "Lua.runtime.version": "LuaJIT",
+    "Lua.diagnostics.globals": ["vim"],
+    "Lua.workspace.library": [
+        "/Users/flap/.vscode/extensions/asvetliakov.vscode-neovim-1.14.1/runtime/lua",
+        // "/Users/flap/.vscode/extensions/asvetliakov.vscode-neovim-1.14.1/runtime/vscode-neovim.vim",
+        "/Users/flap/.config/nvim",
+        "/Users/flap/.local/share/nvim/lazy/neodev.nvim",
+        "/opt/homebrew/Cellar/neovim/0.9.5/share/nvim/runtime",
+        "/opt/homebrew/Cellar/neovim/0.9.5/share/nvim/runtime/pack/dist/opt/matchit",
+        "/opt/homebrew/Cellar/neovim/0.9.5/lib/nvim",
+        // "/Users/flap/.local/state/nvim/lazy/readme",
+        // "/Users/flap/.local/share/nvim/lazy/cmp-nvim-lsp/after",
+        // "/Users/flap/.vscode/extensions/asvetliakov.vscode-neovim-1.14.1/runtime/lua",
+        // "/Users/flap/.vscode/extensions/asvetliakov.vscode-neovim-1.14.1/runtime/vscode"
+    ],
+        "editor.quickSuggestions": {
+            "comments": "inline",
+            "other": "on",
+            "strings": "on"
+        },
+        "editor.semanticHighlighting.enabled": true
+    }
+}
