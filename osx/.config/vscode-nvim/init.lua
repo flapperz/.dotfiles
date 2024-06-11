@@ -73,60 +73,47 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-  {
-    'echasnovski/mini.nvim',
-    version = false,
-    config = function()
-      require('mini.move').setup {
-        left = '',
-        right = '',
-        down = '<M-j>',
-        up = '<M-k>',
+require("lazy").setup({
+	{
+		"echasnovski/mini.nvim",
+		version = false,
+		config = function()
+			require("mini.move").setup({
+				mappings = {
+					left = "",
+					right = "",
+					down = "<M-]>",
+					up = "<M-[>",
 
-        -- Move current line in Normal mode
-        line_left = '',
-        line_right = '',
-        line_down = '<M-j>',
-        line_up = '<M-k>',
-      }
-      require('mini.jump').setup { silent = true }
-      require('mini.ai').setup { n_lines = 500 }
-      require('mini.surround').setup()
-    end
-  },
-  {
-    'chrisgrieser/nvim-spider',
-    lazy = true,
-    config = function()
-      require('spider').setup {
-        skipInsignificantPunctuation = true,
-        subwordMovement = false
-      }
-      vim.keymap.set(
-        { "n", "o", "x" },
-        "w",
-        "<cmd>lua require('spider').motion('w')<CR>",
-        { desc = "Spider-w" }
-      )
-      vim.keymap.set(
-        { "n", "o", "x" },
-        "e",
-        "<cmd>lua require('spider').motion('e')<CR>",
-        { desc = "Spider-e" }
-      )
-      vim.keymap.set(
-        { "n", "o", "x" },
-        "b",
-        "<cmd>lua require('spider').motion('b')<CR>",
-        { desc = "Spider-b" }
-      )
-    end
-  },
-  {
-    'bkad/CamelCaseMotion',
-    init = function()
-      vim.g.camelcasemotion_key = '<leader>'
-    end
-  }
+					-- Move current line in Normal mode
+					line_left = "",
+					line_right = "",
+					line_down = "<M-]>",
+					line_up = "<M-[>",
+				},
+			})
+			require("mini.jump").setup({ silent = true })
+			require("mini.ai").setup({ n_lines = 500 })
+			require("mini.surround").setup()
+		end,
+	},
+	{
+		"chrisgrieser/nvim-spider",
+		lazy = true,
+		config = function()
+			require("spider").setup({
+				skipInsignificantPunctuation = true,
+				subwordMovement = false,
+			})
+			vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+			vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+			vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+		end,
+	},
+	{
+		"bkad/CamelCaseMotion",
+		init = function()
+			vim.g.camelcasemotion_key = "<leader>"
+		end,
+	},
 })
