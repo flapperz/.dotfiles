@@ -17,14 +17,71 @@ fn - h : yabai -m window --focus west
 fn - l : yabai -m window --focus east
 fn - m : yabai -m window --focus first
 
-fn - z : yabai -m window --focus recent
+fn - tab : yabai -m window --focus recent
 # cycle window within application
-fn - tab : skhd --key "cmd - 0x32"
+fn + shift - tab : skhd --key "cmd - 0x32"
+
+# ---- spaces
+fn - n : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto next --wrap
+fn - p : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto prev --wrap
+fn - 1 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 1
+fn - 2 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 2
+fn - 3 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 3
+fn - 4 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 4
+fn - 5 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 5
+fn - 6 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 6
+fn - 7 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 7
+
+fn + shift - n : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto next --all-display
+fn + shift - p : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto prev --all-display
+fn + shift - 1 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 1 --all-display
+fn + shift - 2 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 2 --all-display
+fn + shift - 3 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 3 --all-display
+fn + shift - 4 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 4 --all-display
+fn + shift - 5 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 5 --all-display
+fn + shift - 6 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 6 --all-display
+fn + shift - 7 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 7 --all-display
 
 # ---- displays
 fn - q : yabai -m display --focus 3
 fn - w : yabai -m display --focus 1
-fn - e : yabai -m display --focus 2q
+fn - e : yabai -m display --focus 2
 fn - r : yabai -m space --rotate 270
 fn - x : yabai -m space --mirror x-axis
 fn - y: yabai -m space --mirror y-axis
@@ -57,20 +114,73 @@ fn + shift + cmd - h : yabai -m window --warp west
 fn + shift + cmd - l : yabai -m window --warp east
 fn + shift + cmd - m : yabai -m window --warp first
 
-# send windows across display
-fn + cmd - q : yabai -m window --display 3; yabai -m display --focus 3
-fn + cmd - w : yabai -m window --display 1; yabai -m display --focus 1
-fn + cmd - e : yabai -m window --display 2; yabai -m display --focus 2
 
 # send windows across space
+fn + cmd - n : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send next --wrap
+fn + cmd - p : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send prev --wrap
+
+fn + cmd - 1 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 1
+fn + cmd - 2 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 2
+fn + cmd - 3 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 3
+fn + cmd - 4 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 4
+fn + cmd - 5 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 5
+fn + cmd - 6 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 6
+fn + cmd - 7 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 7
+
+fn + shift + cmd - 1 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 1 --all-display
+fn + shift + cmd - 2 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 2 --all-display
+fn + shift + cmd - 3 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 3 --all-display
+fn + shift + cmd - 4 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 4 --all-display
+fn + shift + cmd - 5 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 5 --all-display
+fn + shift + cmd - 6 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 6 --all-display
+fn + shift + cmd - 7 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action send 7 --all-display
+
+# send windows across display
+    fn + cmd - q : yabai -m window --display 3; yabai -m display --focus 3
+    fn + cmd - w : yabai -m window --display 1; yabai -m display --focus 1
+    fn + cmd - e : yabai -m window --display 2; yabai -m display --focus 2
 
 # mission control alternative
 fn + ctrl - j : skhd --key "ctrl - up"
 fn + ctrl - k : skhd --key "ctrl - down"
 fn + ctrl - h : skhd --key "ctrl - left"
 fn + ctrl - l : skhd --key "ctrl - right"
-# TODO: fn + <NUM> : go to NUMth space of current display (using yabai -m query)
-
+# fn - up : skhd --key "ctrl - up"
+# fn - down : skhd --key "ctrl - down"
+# fn - left : skhd --key "ctrl - left"
+# fn - right : skhd --key "ctrl - right"
 # ----
 # misc
 # ----
