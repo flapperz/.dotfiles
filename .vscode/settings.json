@@ -1,4 +1,7 @@
 {
+    "files.associations": {
+        "*rc": "shellscript"
+    },
     "Lua.runtime.version": "LuaJIT",
     "Lua.diagnostics.globals": ["vim"],
     "Lua.workspace.library": [
