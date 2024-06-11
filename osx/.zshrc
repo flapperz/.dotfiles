@@ -3,6 +3,9 @@
 # ZSH_PECO_HISTORY_DEDUP=1
 
 # ---- Flap setting ----
+path=("$HOME/.local/bin" $PATH)
+export PATH
+
 # unset ZSH_AUTOSUGGEST_USE_ASYNC
 # disable beeb before tab suggestion
 unsetopt LIST_BEEP 
@@ -18,18 +21,23 @@ export LESS="--incsearch --ignore-case --HILITE-UNREAD --status-column --LONG-PR
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-POWERLEVEL9K_MODE='nerdfont-complete'
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-        source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# POWERLEVEL9K_MODE='nerdfont-complete'
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#         source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
-# Manually add from brew caveat
+# nvm
+# manually add from brew caveat
+# export NVM_DIR="$HOME/.nvm"
+#         [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+#         [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# nvm lazy load
 export NVM_DIR="$HOME/.nvm"
-        [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-        [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+        [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
+# alias `nvm` to this one liner lazy load of the normal nvm script
+alias nvm="unalias nvm; [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"; nvm $@"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -38,8 +46,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="lukerandall"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="lukerandall"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -102,7 +110,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git fzf zsh-autosuggestions zsh-syntax-highlighting)
-plugins=(git fzf zsh-autosuggestions fast-syntax-highlighting)
+plugins=(fzf zsh-autosuggestions fast-syntax-highlighting colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -154,13 +162,17 @@ _fzf_comprun() {
 
 # Flap Personal ALIASES
 # ALIASES
+
 alias cdsrc="cd ~/Source"
 alias cdgrf="cd ~/Graffity"
 
+# conda
 alias act="conda activate"
 
-alias ls="eza --oneline --git --icons=auto --color=auto"
+# ls using eza
+# alias ls="eza --oneline --icons=auto --color=auto"
 
+# less with syntax highlight
 LESSPIPE=`which src-hilite-lesspipe.sh`
 alias lessh='LESSOPEN="| ${LESSPIPE} %s" less -r'
 
@@ -168,6 +180,7 @@ alias lessh='LESSOPEN="| ${LESSPIPE} %s" less -r'
 alias ggp="git push"
 alias gga="git add"
 alias ggc="git commit -m"
+alias wta="python ~/Source/work-timer/python/main.py"
 
 ggac () {
         if [ "$#" -eq 2 ] || [ -d "$1" ]; then
@@ -181,45 +194,82 @@ ggac () {
         fi
 }
 
-# SRC PROGRAM ALIASES
-alias wta="python ~/Source/work-timer/python/main.py"
-
-# FUNCTION ALIASES
+# cd + ls
 cds () {
         cd $1
         ls
 }
 
+# man page using fzf
 fman () {
         man $1 | col -bx | fzf
 }
+
+# fzf on file content
 fcat () {
         cat $1 | fzf
 }
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/flap/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-else
-        if [ -f "/Users/flap/miniconda3/etc/profile.d/conda.sh" ]; then
-                . "/Users/flap/miniconda3/etc/profile.d/conda.sh"
-        else
-                export PATH="/Users/flap/miniconda3/bin:$PATH"
-        fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# >>> ---- lazy load conda ----
+# https://www.reddit.com/r/zsh/comments/qmd25q/lazy_loading_conda/
+# Add any commands which depend on conda here
+lazy_conda_aliases=('python' 'conda')
+
+load_conda() {
+  for lazy_conda_alias in $lazy_conda_aliases
+  do
+    unalias $lazy_conda_alias
+  done
+
+  __conda_prefix="$HOME/miniconda3" # Set your conda Location
+
+  # >>> conda initialize >>>
+  __conda_setup="$("$__conda_prefix/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "$__conda_prefix/etc/profile.d/conda.sh" ]; then
+          . "$__conda_prefix/etc/profile.d/conda.sh"
+      else
+          export PATH="$__conda_prefix/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+
+  unset __conda_prefix
+  unfunction load_conda
+}
+
+for lazy_conda_alias in $lazy_conda_aliases
+do
+  alias $lazy_conda_alias="load_conda && $lazy_conda_alias"
+done
+# <<< ---- lazy load conda ----
+
+# old conda load
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/flap/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#         eval "$__conda_setup"
+# else
+#         if [ -f "/Users/flap/miniconda3/etc/profile.d/conda.sh" ]; then
+#                 . "/Users/flap/miniconda3/etc/profile.d/conda.sh"
+#         else
+#                 export PATH="/Users/flap/miniconda3/bin:$PATH"
+#         fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
 # FLAP post setting
-export PF_ASCII="openbsd"
-export PF_INFO="ascii title os host kernel uptime palette"
-pfetch
-# cat ~/.zshbanner
+# export PF_ASCII="openbsd"
+# export PF_INFO="ascii title os host kernel uptime palette"
+# pfetch
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
+# [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # zoxide
