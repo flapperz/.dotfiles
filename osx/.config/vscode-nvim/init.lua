@@ -1,26 +1,25 @@
-local vscode = require 'vscode'
+local vscode = require("vscode")
 -- vim.opt.clipboard = 'unnamedplus'
 
 local function toggle_line_number()
-  local lineNumberConfig = vscode.get_config(
-    'editor.lineNumbers')
-  if lineNumberConfig == 'relative' then
-    vscode.update_config('editor.lineNumbers', 'on', 'global')
-  elseif lineNumberConfig == 'on' then
-    vscode.update_config('editor.lineNumbers', 'relative', 'global')
-  end
+	local lineNumberConfig = vscode.get_config("editor.lineNumbers")
+	if lineNumberConfig == "relative" then
+		vscode.update_config("editor.lineNumbers", "on", "global")
+	elseif lineNumberConfig == "on" then
+		vscode.update_config("editor.lineNumbers", "relative", "global")
+	end
 end
 
 local function toggle_zen_mode()
-  vscode.action('workbench.action.toggleZenMode')
-  vscode.action('workbench.action.toggleMaximizeEditorGroup')
+	vscode.action("workbench.action.toggleZenMode")
+	vscode.action("workbench.action.toggleMaximizeEditorGroup")
 end
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 -- Remaps
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- vim.keymap.set('n', '<leader>pv', [[lua vscode.action 'workbench.action.files.saveFiles']])
 --
@@ -32,44 +31,51 @@ vim.g.mapleader = ' '
 -- vim.keymap.set('x', 'H', '^')
 -- vim.keymap.set('n', 'L', 'g_')
 -- vim.keymap.set('x', 'L', 'g_')
-vim.keymap.set('n', 'J', 'mzJ`z', { noremap = true })
+vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>y', '\"+y', { noremap = true })
-vim.keymap.set({ 'n', 'v' }, '<leader>p', '\"+p', { noremap = true })
-vim.keymap.set({ 'n', 'v' }, '<leader>P', '\"+P', { noremap = true })
-vim.keymap.set({ 'n', 'v' }, '<leader>d', '\"+d', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>d", '"+d', { noremap = true })
 -- vim.keymap.set({ 'n' }, '<leader>sf', function()
 --   vscode.action 'workbench.action.quickOpen'
 -- end)
 
-vim.keymap.set('n', '<leader>kl', toggle_line_number, { noremap = true })
-vim.keymap.set('n', '<leader>kz', toggle_zen_mode, { noremap = true })
-vim.keymap.set('n', '<leader>kw',
-  function()
-    vscode.action('workbench.action.switchWindow')
-  end,
-  { noremap = true })
-vim.keymap.set('n', '<leader>kmm', function() require('vscode').action('editor.action.toggleMinimap') end,
-  { noremap = true })
+-- duplicate of vscode keybinds
+-- vim.keymap.set({ "n", "v" }, "<C-w>Q", function()
+-- 	vscode.call("workbench.action.closeGroup")
+-- end, { noremap = true })
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank({ higroup = 'HiFlapYank' })
-  end,
-})
-vim.keymap.set('n', 'gr', function()
-  vscode.action 'editor.action.goToReferences'
+vim.keymap.set("n", "<leader>fd", function()
+	vscode.action("editor.action.formatDocument")
 end, { noremap = true })
 
+vim.keymap.set("n", "<leader>kl", toggle_line_number, { noremap = true })
+vim.keymap.set("n", "<leader>kz", toggle_zen_mode, { noremap = true })
+vim.keymap.set("n", "<leader>kw", function()
+	vscode.action("workbench.action.switchWindow")
+end, { noremap = true })
+vim.keymap.set("n", "<leader>kmm", function()
+	vscode.action("editor.action.toggleMinimap")
+end, { noremap = true })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank({ higroup = "HiFlapYank" })
+	end,
+})
+vim.keymap.set("n", "gr", function()
+	vscode.action("editor.action.goToReferences")
+end, { noremap = true })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -82,14 +88,14 @@ require("lazy").setup({
 				mappings = {
 					left = "",
 					right = "",
-					down = "<M-]>",
-					up = "<M-[>",
+					down = "<M-j>",
+					up = "<M-k>",
 
 					-- Move current line in Normal mode
 					line_left = "",
 					line_right = "",
-					line_down = "<M-]>",
-					line_up = "<M-[>",
+					line_down = "<M-j>",
+					line_up = "<M-k>",
 				},
 			})
 			require("mini.jump").setup({ silent = true })
