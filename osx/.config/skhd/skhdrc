@@ -1,0 +1,22 @@
+# skhd -o to observe keycode
+# key literals https://github.com/koekeishiya/skhd/issues/1
+# mod + mod
+# fn
+# cmd lcmd rcmd
+# shift lshift rshift
+# alt lalt ralt
+# ctrl lctrl rctrl
+# hyper (cmd + shift + alt + ctrl)
+# meh (shift + alt + ctrl)
+
+# ---------------------
+# fast open application
+# ---------------------
+
+cmd - return : open /Applications/Alacritty.app
+
+# ------
+# import
+# ------
+
+.load "./wm-skhdrc"
