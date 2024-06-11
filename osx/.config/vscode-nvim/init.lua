@@ -42,9 +42,15 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', '\"+d', { noremap = true })
 --   vscode.action 'workbench.action.quickOpen'
 -- end)
 
-vim.keymap.set('n', '<leader>vl', toggle_line_number, { noremap = true })
-vim.keymap.set('n', '<leader>vz', toggle_zen_mode, { noremap = true })
-vim.keymap.set('n', '<leader>vw', function() vscode.action('workbench.action.switchWindow') end, { noremap = true })
+vim.keymap.set('n', '<leader>kl', toggle_line_number, { noremap = true })
+vim.keymap.set('n', '<leader>kz', toggle_zen_mode, { noremap = true })
+vim.keymap.set('n', '<leader>kw',
+  function()
+    vscode.action('workbench.action.switchWindow')
+  end,
+  { noremap = true })
+vim.keymap.set('n', '<leader>kmm', function() require('vscode').action('editor.action.toggleMinimap') end,
+  { noremap = true })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -56,9 +62,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('n', 'gr', function()
   vscode.action 'editor.action.goToReferences'
 end, { noremap = true })
-vim.cmd [[
-    command! -nargs=0 Minimap lua require('vscode').action('editor.action.toggleMinimap')
-]]
 
 
 -- [[ Install `lazy.nvim` plugin manager ]]
