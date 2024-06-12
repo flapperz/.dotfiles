@@ -144,7 +144,7 @@ def main():
     if target_space == current_space:
         return
 
-    print(f'target_space: {target_space}')
+    # print(f'target_space: {target_space}')
 
     # ---- action
     if args.action == 'goto':
