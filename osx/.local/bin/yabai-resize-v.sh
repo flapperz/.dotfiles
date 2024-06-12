@@ -6,19 +6,23 @@ MINOPT=$([ $1 -lt 0 ] && echo "" || echo "-")
 HALF_STEP=${1#-}
 
 window_info=$(yabai -m query --windows --window)
-window_gap_min=$(echo "$window_info" | jq ".frame.y")
-display_max=$(yabai -m query --displays --display | jq ".frame.h")
+display_info=$(yabai -m query --displays --display)
+window_min=$(echo "$window_info" | jq ".frame.y")
+display_size=$(echo "$display_info" | jq ".frame.h")
+display_min=$(echo "$display_info" | jq ".frame.y")
 
-percent=$(printf %.0f $(bc -l --expression "$window_gap_min * 100 / $display_max"))
+
+# if hit min corner
+percent=$(printf %.0f $(bc -l --expression "($window_min - $display_min) * 100 / $display_size"))
 
 if [[ $percent -lt $THRESHOLD ]]; then
     yabai -m window --resize bottom:0:$MAXOPT$(($HALF_STEP * 2))
     exit 0
 fi
 
-window_gap_max=$(bc -l --expression "$display_max - $(echo "$window_info" | jq ".frame.h") - $window_gap_min")
-percent=$(printf %.0f $(bc -l --expression "$window_gap_max * 100 / $display_max"))
-echo $percent
+# if hit max corner
+window_size=$(echo "$window_info | jq ".frame.h")")
+percent=$(printf %.0f $(bc -l --expression "($display_min + $display_size - $window_min - $window_size) * 100 / $display_size"))
 
 if [[ $percent -lt $THRESHOLD ]]; then
     yabai -m window --resize top:0:$MINOPT$(($HALF_STEP * 2))
