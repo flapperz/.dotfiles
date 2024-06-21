@@ -1,3 +1,8 @@
+fpath=( "$HOME/.config/zsh/zfunctions" $fpath )
+# autoload -U promptinit && promptinit
+autoload -Uz prompt_purification_setup && prompt_purification_setup
+# prompt flap
+
 path=("$HOME/.local/bin" $PATH)
 export PATH
 
@@ -11,6 +16,8 @@ export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
 # alias `nvm` to this one liner lazy load of the normal nvm script
 alias nvm="unalias nvm; [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"; nvm $@"
 # <<< ---- nvm lazy load ----
+
+
 
 # ----------
 # fzf config
