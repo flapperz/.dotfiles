@@ -24,10 +24,10 @@ fn + shift - tab : skhd --key "cmd - 0x32"
 # ---- spaces
 fn - 0x1E : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
-    --action goto next --wrap
+    --action goto next
 fn - 0x21 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
-    --action goto prev --wrap
+    --action goto prev
 fn - 1 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action goto 1
@@ -139,10 +139,10 @@ fn + shift + cmd - m : yabai -m window --warp first
 # send windows across space
 fn + cmd - 0x1E : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
-    --action send next --wrap
+    --action send next
 fn + cmd - 0x21 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
-    --action send prev --wrap
+    --action send prev
 
 fn + cmd - 1 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
