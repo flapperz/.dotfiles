@@ -22,10 +22,10 @@ fn - tab : yabai -m window --focus recent
 fn + shift - tab : skhd --key "cmd - 0x32"
 
 # ---- spaces
-fn - n : /Users/flap/miniconda3/bin/python\
+fn - 0x1E : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action goto next --wrap
-fn - p : /Users/flap/miniconda3/bin/python\
+fn - 0x21 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action goto prev --wrap
 fn - 1 : /Users/flap/miniconda3/bin/python\
@@ -50,10 +50,10 @@ fn - 7 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action goto 7
 
-fn + shift - n : /Users/flap/miniconda3/bin/python\
+fn + shift - 0x1E : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action goto next --all-display
-fn + shift - p : /Users/flap/miniconda3/bin/python\
+fn + shift - 0x21 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action goto prev --all-display
 fn + shift - 1 : /Users/flap/miniconda3/bin/python\
@@ -77,6 +77,15 @@ fn + shift - 6 : /Users/flap/miniconda3/bin/python\
 fn + shift - 7 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action goto 7 --all-display
+fn + shift - 8 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 8 --all-display
+fn + shift - 9 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 9 --all-display
+fn + shift - 0 : /Users/flap/miniconda3/bin/python\
+    $HOME/.local/bin/yabai-space-util.py\
+    --action goto 10 --all-display
 
 # ---- displays
 fn - q : yabai -m display --focus 3
@@ -99,13 +108,26 @@ fn - 0x2F : yabai -m space --balance
 # move windows
 # ------------
 
+# move hot windows
+# fn - a : bash $HOME/.local/bin/yabai-hotswap.sh Alacritty alacritty
+# fn - v : bash $HOME/.local/bin/yabai-hotswap.sh Code vscode
+
 # swap windows
 fn + cmd - j : yabai -m window --swap south
 fn + cmd - k : yabai -m window --swap north
 fn + cmd - h : yabai -m window --swap west
 fn + cmd - l : yabai -m window --swap east
 fn + cmd - m : yabai -m window --swap first
-fn + cmd - r : yabai -m window --toggle split
+fn + shift - r : yabai -m window --toggle split
+# fn + cmd - c : yabai -m window first --warp last; yabai -m window --focus last; yabai -m window --swap sibling; yabai -m --focus first
+
+# swap window with other display
+fn + cmd + shift - q : yabai -m window --swap \
+$(yabai -m query --spaces | jq '.[] | select(."is-visible"==true and .display==3)."first-window"')
+fn + cmd + shift - w : yabai -m window --swap \
+$(yabai -m query --spaces | jq '.[] | select(."is-visible"==true and .display==1)."first-window"')
+fn + cmd + shift - e : yabai -m window --swap \
+$(yabai -m query --spaces | jq '.[] | select(."is-visible"==true and .display==2)."first-window"')
 
 # move windows and split
 fn + shift + cmd - j : yabai -m window --warp south
@@ -114,12 +136,11 @@ fn + shift + cmd - h : yabai -m window --warp west
 fn + shift + cmd - l : yabai -m window --warp east
 fn + shift + cmd - m : yabai -m window --warp first
 
-
 # send windows across space
-fn + cmd - n : /Users/flap/miniconda3/bin/python\
+fn + cmd - 0x1E : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action send next --wrap
-fn + cmd - p : /Users/flap/miniconda3/bin/python\
+fn + cmd - 0x21 : /Users/flap/miniconda3/bin/python\
     $HOME/.local/bin/yabai-space-util.py\
     --action send prev --wrap
 
@@ -168,9 +189,9 @@ fn + shift + cmd - 7 : /Users/flap/miniconda3/bin/python\
     --action send 7 --all-display
 
 # send windows across display
-    fn + cmd - q : yabai -m window --display 3; yabai -m display --focus 3
-    fn + cmd - w : yabai -m window --display 1; yabai -m display --focus 1
-    fn + cmd - e : yabai -m window --display 2; yabai -m display --focus 2
+fn + cmd - q : yabai -m window --display 3; yabai -m display --focus 3
+fn + cmd - w : yabai -m window --display 1; yabai -m display --focus 1
+fn + cmd - e : yabai -m window --display 2; yabai -m display --focus 2
 
 # mission control alternative
 fn + ctrl - j : skhd --key "ctrl - up"
@@ -187,6 +208,6 @@ fn + ctrl - l : skhd --key "ctrl - right"
 
 fn - 0x1B : bash $HOME/.local/bin/yabai-resize-h.sh -20
 fn - 0x18 : bash $HOME/.local/bin/yabai-resize-h.sh 20
-fn - 0x21 : bash $HOME/.local/bin/yabai-resize-v.sh -20
-fn - 0x1E : bash $HOME/.local/bin/yabai-resize-v.sh 20
+fn + shift - 0x1B : bash $HOME/.local/bin/yabai-resize-v.sh -20
+fn + shift - 0x18 : bash $HOME/.local/bin/yabai-resize-v.sh 20
 fn - g : yabai -m space --toggle padding; yabai -m space --toggle gap

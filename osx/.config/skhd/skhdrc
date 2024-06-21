@@ -14,6 +14,26 @@
 # ---------------------
 
 cmd - return : open /Applications/Alacritty.app
+fn - b : open "/Applications/Brave Browser.app"
+fn - c : open "/Applications/Visual Studio Code.app"
+
+# ------
+# common
+# ------
+
+# rcmd + alt - h : skhd --key alt - left
+# rcmd + alt - l : skhd --key alt - right
+# rcmd + alt - j : skhd --key alt - down
+# rcmd + alt - k : skhd --key alt - up
+rcmd - h : skhd --key "left"
+rcmd - l : skhd --key "right"
+rcmd - j : skhd --key "down"
+rcmd - k : skhd --key "up"
+alt + rcmd - h : skhd --key "alt - left"
+alt + rcmd - l : skhd --key "alt - right"
+alt + rcmd - j : skhd --key "alt - down"
+alt + rcmd - k : skhd --key "alt - up"
+
 
 # ------
 # import
