@@ -1,5 +1,7 @@
 unsetopt LIST_BEEP
-HISTSIZE=5000
+setopt AUTO_PUSHD
+
+source ~/.config/zsh/lib/history.zsh
 
 # >>> ---- nvm lazy load ----
 export NVM_DIR="$HOME/.nvm"
@@ -48,6 +50,7 @@ done
 
 # this add 0.02 s.
 autoload -U compinit
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 # for dump in ${ZDOTDIR}/.zcompdump(N.mh+24); do
@@ -82,6 +85,7 @@ _fzf_comprun() {
 }
 
 antigen bundle ael-code/zsh-colored-man-pages
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting # should be last bundle
 antigen apply
@@ -91,6 +95,7 @@ export LESS="--incsearch --ignore-case --HILITE-UNREAD --status-column --LONG-PR
 export BAT_THEME=ansi
 
 # aliases
+alias ls='ls --color=auto'
 alias cdsrc="cd ~/Source"
 alias cdgrf="cd ~/Graffity"
 
