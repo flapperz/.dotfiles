@@ -1,4 +1,6 @@
 .zcompdump
+.zcompcache
+.zsh_sessions
 .zshrc.zwc
 .zsh_history
 antigens/
