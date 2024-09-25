@@ -23,68 +23,68 @@ fn + shift - tab : skhd --key "cmd - 0x32"
 
 # ---- spaces
 fn - 0x1E : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto next
 fn - 0x21 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto prev
 fn - 1 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 1
 fn - 2 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 2
 fn - 3 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 3
 fn - 4 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 4
 fn - 5 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 5
 fn - 6 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 6
 fn - 7 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 7
 
 fn + shift - 0x1E : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto next --all-display
 fn + shift - 0x21 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto prev --all-display
 fn + shift - 1 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 1 --all-display
 fn + shift - 2 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 2 --all-display
 fn + shift - 3 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 3 --all-display
 fn + shift - 4 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 4 --all-display
 fn + shift - 5 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 5 --all-display
 fn + shift - 6 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 6 --all-display
 fn + shift - 7 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 7 --all-display
 fn + shift - 8 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 8 --all-display
 fn + shift - 9 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 9 --all-display
 fn + shift - 0 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action goto 10 --all-display
 
 # ---- displays
@@ -109,8 +109,8 @@ fn - 0x2F : yabai -m space --balance
 # ------------
 
 # move hot windows
-# fn - a : bash $HOME/.local/bin/yabai-hotswap.sh Alacritty alacritty
-# fn - v : bash $HOME/.local/bin/yabai-hotswap.sh Code vscode
+# fn - a : bash $HOME/.local/script/yabai-hotswap.sh Alacritty alacritty
+# fn - v : bash $HOME/.local/script/yabai-hotswap.sh Code vscode
 
 # swap windows
 fn + cmd - j : yabai -m window --swap south
@@ -138,54 +138,54 @@ fn + shift + cmd - m : yabai -m window --warp first
 
 # send windows across space
 fn + cmd - 0x1E : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send next
 fn + cmd - 0x21 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send prev
 
 fn + cmd - 1 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 1
 fn + cmd - 2 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 2
 fn + cmd - 3 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 3
 fn + cmd - 4 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 4
 fn + cmd - 5 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 5
 fn + cmd - 6 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 6
 fn + cmd - 7 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 7
 
 fn + shift + cmd - 1 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 1 --all-display
 fn + shift + cmd - 2 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 2 --all-display
 fn + shift + cmd - 3 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 3 --all-display
 fn + shift + cmd - 4 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 4 --all-display
 fn + shift + cmd - 5 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 5 --all-display
 fn + shift + cmd - 6 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 6 --all-display
 fn + shift + cmd - 7 : /Users/flap/miniconda3/bin/python\
-    $HOME/.local/bin/yabai-space-util.py\
+    $HOME/.local/script/yabai-space-util.py\
     --action send 7 --all-display
 
 # send windows across display
@@ -206,8 +206,8 @@ fn + ctrl - l : skhd --key "ctrl - right"
 # misc
 # ----
 
-fn - 0x1B : bash $HOME/.local/bin/yabai-resize-h.sh -20
-fn - 0x18 : bash $HOME/.local/bin/yabai-resize-h.sh 20
-fn + shift - 0x1B : bash $HOME/.local/bin/yabai-resize-v.sh -20
-fn + shift - 0x18 : bash $HOME/.local/bin/yabai-resize-v.sh 20
+fn - 0x1B : bash $HOME/.local/script/yabai-resize-h.sh -20
+fn - 0x18 : bash $HOME/.local/script/yabai-resize-h.sh 20
+fn + shift - 0x1B : bash $HOME/.local/script/yabai-resize-v.sh -20
+fn + shift - 0x18 : bash $HOME/.local/script/yabai-resize-v.sh 20
 fn - g : yabai -m space --toggle padding; yabai -m space --toggle gap
