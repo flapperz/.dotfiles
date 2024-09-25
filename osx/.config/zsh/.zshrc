@@ -117,3 +117,9 @@ alias act="conda activate"
 
 LESSPIPE=`which src-hilite-lesspipe.sh`
 alias lessh='LESSOPEN="| ${LESSPIPE} %s" less -r'
+
+# eval "$(fnm env --use-on-cd --shell zsh)"
+eval "$(fnm env --shell zsh)"
+
+# postgres
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
