@@ -19,3 +19,5 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^League of Legends$" manage=off
+yabai -m rule --add app="^Preview$" manage=off
+yabai -m rule --add app="^Mail$" manage=off
