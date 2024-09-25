@@ -64,7 +64,8 @@ ADOTDIR=$HOME/.config/zsh/antigens
 source $HOME/.config/zsh/antigen.zsh
 
 POWERLEVEL9K_MODE='nerdfont-complete'
-antigen theme romkatv/powerlevel10k
+THEME=romkatv/powerlevel10k
+antigen theme $THEME
 source ~/.config/p10k/.p10k.zsh
 
 source <(fzf --zsh)
