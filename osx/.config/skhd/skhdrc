@@ -18,7 +18,7 @@ fn + cmd - return : open /Applications/Alacritty.app
 ctrl - return : open /Applications/Alacritty.app
 fn - b : open "/Applications/Brave Browser.app"
 fn - c : open "/Applications/Visual Studio Code.app"
-fn - v : bash $HOME/.local/bin/yabai-hotswap-vscode.sh 
+fn - v : bash $HOME/.local/script/yabai-hotswap-vscode.sh 
 
 # ------
 # common
