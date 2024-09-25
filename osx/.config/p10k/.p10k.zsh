@@ -46,6 +46,7 @@
     dir                     # current directory
     vcs                     # git status
     anaconda                # conda environment (https://conda.io/)
+    node_version
     command_execution_time  # duration of the last command
     # =========================[ Line #2 ]=========================
     newline                 # \n
