@@ -58,10 +58,10 @@ history = 4096
 multiplier = 3
 
 [window]
-# blur = true
+blur = true
 decorations = "Full"
 dynamic_title = true
-# opacity = 1
+opacity = 0.65
 option_as_alt = "OnlyLeft"
 title = "Alacritty"
 # padding = { x = 16, y = 26 }
