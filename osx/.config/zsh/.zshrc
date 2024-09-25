@@ -100,6 +100,17 @@ alias ls='ls --color=auto'
 alias cdsrc="cd ~/Source"
 alias cdgrf="cd ~/Graffity"
 
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias gg='git-graph'
+alias gga='git add'
+alias ggc='git commit'
+alias ggmk='python /Users/flap/Source/git-magik/git-magik.py'
+
+alias pn='pnpm'
+
 alias act="conda activate"
 
 # alias ls="eza --oneline --git --icons=auto --color=auto"
