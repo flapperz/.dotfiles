@@ -27,8 +27,11 @@ import subprocess
 YABAI = '/opt/homebrew/bin/yabai'
 JQ = '/opt/homebrew/bin/jq'
 
+def goto_space_shortcut(target_space):
+    keymap = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=']
+    _ = subprocess.run(['skhd', '--key', f'hyper - {keymap[target_space-1]}'])
 
-def main():
+def main():  # noqa: C901
     # -----------------
     # Create the parser
     # -----------------
@@ -86,6 +89,19 @@ def main():
     )
     proc_out, proc_err = process.communicate()
     spaces_info = json.loads(proc_out)
+
+    process = subprocess.Popen(
+        [
+            'yabai',
+            '-m',
+            'query',
+            '--windows',
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    proc_out, proc_err = process.communicate()
+    windows_info = json.loads(proc_out)
 
     # ---- construct data
     current_display = 0
@@ -150,8 +166,7 @@ def main():
     if args.action == 'goto':
         # strategy 1
         if target_space <= 12:
-            keymap = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=']
-            _ = subprocess.run(['skhd', '--key', f'hyper - {keymap[target_space-1]}'])
+            goto_space_shortcut(target_space)
             return
 
         # strategy 2
@@ -159,9 +174,28 @@ def main():
             space_info['index']: space_info['first-window']
             for space_info in spaces_info
         }
-        window_id = space_win[target_space]
-        if window_id != 0:
-            _ = subprocess.run(['yabai', '-m', 'window', '--focus', f'{window_id}'])
+        first_window_id = space_win[target_space]
+
+        # check if this window has ax ref while get next best window
+        is_first_window_has_ax_ref = True
+        candidate_window_id = []
+        for win_info in windows_info:
+            win_id = win_info['id']
+
+            if win_id == first_window_id:
+                is_first_window_has_ax_ref = win_info['has-ax-reference']
+            if win_info["space"] == target_space and win_info['has-ax-reference']:
+                candidate_window_id.append(win_id)
+
+        if is_first_window_has_ax_ref:
+            selected_window_id = first_window_id
+            if selected_window_id != 0:
+                _ = subprocess.run(['yabai', '-m', 'window', '--focus', f'{selected_window_id}'])
+        elif candidate_window_id:
+            selected_window_id = candidate_window_id[0]
+            if selected_window_id != 0:
+                _ = subprocess.run(['yabai', '-m', 'window', '--focus', f'{selected_window_id}'])
+
 
     if args.action == 'send':
         proc_out = subprocess.run(
@@ -170,9 +204,9 @@ def main():
             capture_output=True,
             text=True,
         )
-        window_id = proc_out.stdout.strip()
+        first_window_id = proc_out.stdout.strip()
         _ = subprocess.run(['yabai', '-m', 'window', '--space', f'{target_space}'])
-        _ = subprocess.run(['yabai', '-m', 'window', '--focus', f'{window_id}'])
+        _ = subprocess.run(['yabai', '-m', 'window', '--focus', f'{first_window_id}'])
         return
 
     if args.action == 'sendfamily':
