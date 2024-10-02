@@ -98,7 +98,8 @@ export BAT_THEME=ansi
 # aliases
 alias ls='ls --color=auto'
 alias cdsrc="cd ~/Source"
-alias cdgrf="cd ~/Graffity"
+# alias cdgrf="cd ~/Graffity"
+alias cdmin="cd ~/Minervia"
 
 alias ll='ls -alF'
 alias la='ls -A'
