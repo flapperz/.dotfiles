@@ -102,7 +102,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -185,10 +185,21 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+-- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+-- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- [[ My Keymap ]]
+-- vim.keymap.set('n', '<leader>sv', ':source $MYVIMRC<CR>', { desc = '[S]ource [V]imrc' })
+vim.keymap.set({ 'n', 'v', 'o' }, '<C-h>', '^')
+vim.keymap.set({ 'n', 'v', 'o' }, '<C-l>', '$')
+vim.keymap.set('n', 'J', 'mzJ`z', { noremap = true })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>d', '"+d', { noremap = true })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -773,6 +784,21 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      require('mini.move').setup {
+        mappings = {
+          left = '',
+          right = '',
+          down = '<M-j>',
+          up = '<M-k>',
+
+          -- Move current line in Normal mode
+          line_left = '',
+          line_right = '',
+          line_down = '<M-j>',
+          line_up = '<M-k>',
+        },
+      }
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
