@@ -1,6 +1,6 @@
 local vscode = require("vscode")
 -- vim.opt.clipboard = 'unnamedplus'
-
+-- TODO: format function to another files
 local function toggle_line_number()
 	local lineNumberConfig = vscode.get_config("editor.lineNumbers")
 	if lineNumberConfig == "relative" then
@@ -15,6 +15,19 @@ local function toggle_zen_mode()
 	vscode.action("workbench.action.toggleMaximizeEditorGroup")
 end
 
+local function prev_problem_in_files()
+	vscode.action("editor.action.marker.prevInFiles")
+end
+local function prev_problem()
+	vscode.action("editor.action.marker.prev")
+end
+local function next_problem_in_files()
+	vscode.action("editor.action.marker.nextInFiles")
+end
+local function next_problem()
+	vscode.action("editor.action.marker.next")
+end
+
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
@@ -27,10 +40,8 @@ vim.g.mapleader = " "
 --   vscode.action 'workbench.action.toggleSidebarVisibility'
 -- end, { noremap = true })
 
--- vim.keymap.set('n', 'H', '^')
--- vim.keymap.set('x', 'H', '^')
--- vim.keymap.set('n', 'L', 'g_')
--- vim.keymap.set('x', 'L', 'g_')
+vim.keymap.set({ "n", "v", "o" }, "<C-h>", "^")
+vim.keymap.set({ "n", "v", "o" }, "<C-l>", "$")
 vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true })
@@ -45,17 +56,24 @@ vim.keymap.set({ "n", "v" }, "<leader>d", '"+d', { noremap = true })
 -- vim.keymap.set({ "n", "v" }, "<C-w>Q", function()
 -- 	vscode.call("workbench.action.closeGroup")
 -- end, { noremap = true })
+vim.keymap.set("n", "<leader>k", next_problem)
+vim.keymap.set("n", "<C-k>", next_problem_in_files)
+vim.keymap.set("n", "<leader>j", prev_problem)
+vim.keymap.set("n", "<C-j>", prev_problem_in_files)
 
 vim.keymap.set("n", "<leader>fd", function()
 	vscode.action("editor.action.formatDocument")
 end, { noremap = true })
 
-vim.keymap.set("n", "<leader>kl", toggle_line_number, { noremap = true })
-vim.keymap.set("n", "<leader>kz", toggle_zen_mode, { noremap = true })
-vim.keymap.set("n", "<leader>kw", function()
+vim.keymap.set("n", "<leader>tl", toggle_line_number, { noremap = true })
+vim.keymap.set("n", "<leader>tz", toggle_zen_mode, { noremap = true })
+vim.keymap.set("n", "<leader>ow", function()
 	vscode.action("workbench.action.switchWindow")
 end, { noremap = true })
-vim.keymap.set("n", "<leader>kmm", function()
+vim.keymap.set("n", "<leader>or", function()
+	vscode.action("workbench.action.openRecent")
+end, { noremap = true })
+vim.keymap.set("n", "<leader>tmm", function()
 	vscode.action("editor.action.toggleMinimap")
 end, { noremap = true })
 
@@ -103,23 +121,66 @@ require("lazy").setup({
 			require("mini.surround").setup()
 		end,
 	},
-	{
-		"chrisgrieser/nvim-spider",
-		lazy = true,
-		config = function()
-			require("spider").setup({
-				skipInsignificantPunctuation = true,
-				subwordMovement = false,
-			})
-			vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
-			vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
-			vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
-		end,
-	},
+	-- {
+	-- 	"chrisgrieser/nvim-spider",
+	-- 	lazy = true,
+	-- 	config = function()
+	-- 		require("spider").setup({
+	-- 			skipInsignificantPunctuation = true,
+	-- 			subwordMovement = false,
+	-- 		})
+	-- 		vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+	-- 		vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+	-- 		vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+	-- 	end,
+	-- },
 	{
 		"bkad/CamelCaseMotion",
 		init = function()
-			vim.g.camelcasemotion_key = "<leader>"
+			vim.g.camelcasemotion_key = ","
+		end,
+	},
+	{
+		"monaqa/dial.nvim",
+		config = function()
+			local augend = require("dial.augend")
+			require("dial.config").augends:register_group({
+				-- default augends used when no group name is specified
+				default = {
+					augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
+					augend.integer.alias.hex, -- nonnegative hex number  (0x01, 0x1a1f, etc.)
+					augend.date.alias["%d/%m/%y"], -- date (2022/02/19, etc.)
+					augend.constant.alias.bool,
+					augend.constant.new({ elements = { "True", "False" }, word = true, cyclic = true }),
+					augend.constant.new({ elements = { "and", "or" }, word = true, cyclic = true }),
+					augend.constant.new({ elements = { "&&", "||" }, word = false, cyclic = true }),
+				},
+			})
+			vim.keymap.set("n", "<c-a>", function()
+				require("dial.map").manipulate("increment", "normal")
+			end)
+			vim.keymap.set("n", "<c-x>", function()
+				require("dial.map").manipulate("decrement", "normal")
+			end)
+			-- ? i don't know what g do
+			-- vim.keymap.set("n", "g<c-a>", function()
+			-- 	require("dial.map").manipulate("increment", "gnormal")
+			-- end)
+			-- vim.keymap.set("n", "g<c-x>", function()
+			-- 	require("dial.map").manipulate("decrement", "gnormal")
+			-- end)
+			vim.keymap.set("v", "<c-a>", function()
+				require("dial.map").manipulate("increment", "visual")
+			end)
+			vim.keymap.set("v", "<c-x>", function()
+				require("dial.map").manipulate("decrement", "visual")
+			end)
+					-- vim.keymap.set("v", "g<c-a>", function()
+					-- 	require("dial.map").manipulate("increment", "gvisual")
+					-- end)
+					-- vim.keymap.set("v", "g<c-x>", function()
+					-- 	require("dial.map").manipulate("decrement", "gvisual")
+					-- end)
 		end,
 	},
 })

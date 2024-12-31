@@ -164,7 +164,7 @@ _fzf_comprun() {
 # ALIASES
 
 alias cdsrc="cd ~/Source"
-alias cdmin="cd ~/Minervia"
+alias cdgrf="cd ~/Graffity"
 
 # conda
 alias act="conda activate"
@@ -278,11 +278,3 @@ eval "$(zoxide init zsh)"
 # ---- Bat ----
 
 export BAT_THEME=ansi
-
-# pnpm
-export PNPM_HOME="/Users/flap/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
