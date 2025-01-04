@@ -40,6 +40,9 @@ vim.g.mapleader = " "
 --   vscode.action 'workbench.action.toggleSidebarVisibility'
 -- end, { noremap = true })
 
+-- vim.keymap.set("n","u","<Cmd>call VSCodeNotify('undo')<CR>")
+-- vim.keymap.set("n","<C-r>","<Cmd>call VSCodeNotify('redo')<CR>")
+
 vim.keymap.set({ "n", "v", "o" }, "<C-h>", "^")
 vim.keymap.set({ "n", "v", "o" }, "<C-l>", "$")
 vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
@@ -84,6 +87,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank({ higroup = "HiFlapYank" })
 	end,
 })
+
 vim.keymap.set("n", "gr", function()
 	vscode.action("editor.action.goToReferences")
 end, { noremap = true })
@@ -102,20 +106,20 @@ require("lazy").setup({
 		"echasnovski/mini.nvim",
 		version = false,
 		config = function()
-			require("mini.move").setup({
-				mappings = {
-					left = "",
-					right = "",
-					down = "<M-j>",
-					up = "<M-k>",
+			-- require("mini.move").setup({
+			-- 	mappings = {
+			-- 		left = "",
+			-- 		right = "",
+			-- 		down = "<M-j>",
+			-- 		up = "<M-k>",
 
-					-- Move current line in Normal mode
-					line_left = "",
-					line_right = "",
-					line_down = "<M-j>",
-					line_up = "<M-k>",
-				},
-			})
+			-- 		-- Move current line in Normal mode
+			-- 		line_left = "",
+			-- 		line_right = "",
+			-- 		line_down = "<M-j>",
+			-- 		line_up = "<M-k>",
+			-- 	},
+			-- })
 			require("mini.jump").setup({ silent = true })
 			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.surround").setup()
