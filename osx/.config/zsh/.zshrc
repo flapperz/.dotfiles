@@ -100,6 +100,7 @@ alias ls='ls --color=auto'
 alias cdsrc="cd ~/Source"
 # alias cdgrf="cd ~/Graffity"
 alias cdmin="cd ~/Minervia"
+alias cdconf="cd ~/.dotfiles/osx/.config"
 
 alias ll='ls -alF'
 alias la='ls -A'
@@ -109,8 +110,6 @@ alias gg='git-graph'
 alias gga='git add'
 alias ggc='git commit'
 alias ggmk='python /Users/flap/Source/git-magik/git-magik.py'
-
-alias pn='pnpm'
 
 alias act="conda activate"
 
