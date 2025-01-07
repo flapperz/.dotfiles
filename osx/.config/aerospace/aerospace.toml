@@ -38,16 +38,6 @@ on-focus-changed = 'move-mouse window-lazy-center'
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 automatically-unhide-macos-hidden-apps = false
 
-[workspace-to-monitor-force-assignment]
-1 = 'main'
-2 = 'main'
-3 = 'main'
-4 = 'main'
-5 = 'secondary'
-6 = 'secondary'
-7 = 'secondary'
-8 = 'secondary'
-
 #
 # floating
 #
@@ -74,23 +64,27 @@ run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^(Notion|Obsidian|Siyuan)$'
-run = ['move-node-to-workspace 2']
+run = ['move-node-to-workspace 9']
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^(Discord|Line)$'
-run = ['move-node-to-workspace 3']
+run = ['move-node-to-workspace 8']
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^Code$'
-run = [ 'move-node-to-workspace 5']
+run = [ 'move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
-run = [ 'move-node-to-workspace 6' ]
+run = [ 'move-node-to-workspace 3' ]
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^(Finder)$'
-run = ['move-node-to-workspace 7']
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^(Docker Desktop|Activity Monitor)$'
+run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
 run = [ 'move-node-to-workspace 10' ]
@@ -168,16 +162,16 @@ alt-shift-equal = 'resize smart +50'
 alt-shift-f = 'fullscreen --no-outer-gaps'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'summon-workspace 9'
-alt-0 = 'summon-workspace 10'
+alt-1 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 1', 'move-mouse monitor-lazy-center']
+alt-2 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 2', 'move-mouse monitor-lazy-center']
+alt-3 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 3', 'move-mouse monitor-lazy-center']
+alt-4 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 4', 'move-mouse monitor-lazy-center']
+alt-5 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 5', 'move-mouse monitor-lazy-center']
+alt-6 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 6', 'move-mouse monitor-lazy-center']
+alt-7 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 7', 'move-mouse monitor-lazy-center']
+alt-8 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 8', 'move-mouse monitor-lazy-center']
+alt-9 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 9', 'move-mouse monitor-lazy-center']
+alt-0 = ['move-workspace-to-monitor next --wrap-around', 'focus-monitor --wrap-around prev', 'summon-workspace 10', 'move-mouse monitor-lazy-center']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace --focus-follows-window 1'
@@ -192,8 +186,7 @@ alt-shift-9 = 'move-node-to-workspace --focus-follows-window 9'
 alt-shift-0 = 'move-node-to-workspace --focus-follows-window 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
-alt-tab = 'workspace-back-and-forth'
+alt-tab = 'focus-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 # alt-rightSquareBracket = 'focus-monitor --wrap-around next'
 # alt-leftSquareBracket = 'focus-monitor --wrap-around prev'
