@@ -99,7 +99,7 @@ export BAT_THEME=ansi
 alias ls='ls --color=auto'
 alias cdsrc="cd ~/Source"
 # alias cdgrf="cd ~/Graffity"
-alias cdmin="cd ~/Minervia"
+alias cdmn="cd ~/Minervia"
 alias cdconf="cd ~/.dotfiles/osx/.config"
 
 alias ll='ls -alF'
