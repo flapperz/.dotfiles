@@ -3,15 +3,7 @@ setopt AUTO_PUSHD
 
 source ~/.config/zsh/lib/history.zsh
 
-# >>> ---- nvm lazy load ----
-export NVM_DIR="$HOME/.nvm"
-        [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
-export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
-# alias `nvm` to this one liner lazy load of the normal nvm script
-alias nvm="unalias nvm; [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"; nvm $@"
-# <<< ---- nvm lazy load ----
-
-# >>> ---- lazy load conda ----
+# >>> ---- lazy load conda ---
 # https://www.reddit.com/r/zsh/comments/qmd25q/lazy_loading_conda/
 # Add any commands which depend on conda here
 lazy_conda_aliases=('python' 'conda')
