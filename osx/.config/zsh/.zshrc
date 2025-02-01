@@ -92,6 +92,12 @@ alias ls='ls --color=auto'
 alias cdsrc="cd ~/Source"
 # alias cdgrf="cd ~/Graffity"
 alias cdmn="cd ~/Minervia"
+
+alias cdback="cd ~/Minervia/RSAPP/RSAPP-backend"
+alias cdbackback="cd ~/Minervia/RSAPP/RSAPP-backend/backend"
+alias cdfront="cd ~/Minervia/RSAPP/RSAPP-frontend-new"
+alias cdleg="cd ~/Minervia/RSAPP/rsapp-legacy"
+
 alias cdconf="cd ~/.dotfiles/osx/.config"
 
 alias ll='ls -alF'
