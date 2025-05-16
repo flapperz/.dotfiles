@@ -43,6 +43,7 @@ vim.g.mapleader = " "
 -- vim.keymap.set("n","u","<Cmd>call VSCodeNotify('undo')<CR>")
 -- vim.keymap.set("n","<C-r>","<Cmd>call VSCodeNotify('redo')<CR>")
 
+-- exit insert mode
 vim.keymap.set({ "n", "v", "o" }, "<C-h>", "^")
 vim.keymap.set({ "n", "v", "o" }, "<C-l>", "$")
 vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
