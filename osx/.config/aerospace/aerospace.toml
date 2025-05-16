@@ -94,7 +94,8 @@ run = [ 'move-node-to-workspace 6' ]
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^(Finder)$'
-run = ['move-node-to-workspace 7']
+# run = ['move-node-to-workspace 7']
+run = ['layout floating']
 
 [[on-window-detected]]
 run = [ 'move-node-to-workspace 10' ]
@@ -195,8 +196,8 @@ alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 # alt-rightSquareBracket = 'focus-monitor --wrap-around next'
 # alt-leftSquareBracket = 'focus-monitor --wrap-around prev'
-# alt-shift-rightSquareBracket = ['move-node-to-monitor --wrap-around next', 'focus-monitor --wrap-around next']
-# alt-shift-leftSquareBracket = ['move-node-to-monitor --wrap-around prev', 'focus-monitor --wrap-around prev']
+alt-shift-rightSquareBracket = ['move-workspace-to-monitor --wrap-around next']
+alt-shift-leftSquareBracket = ['move-workspace-to-monitor --wrap-around prev']
 # alt-w = 'focus-monitor --wrap-around next'
 # alt-shift-w = ['move-node-to-monitor --wrap-around next', 'focus-monitor --wrap-around next']
 alt-q = 'focus-monitor 1'
@@ -207,10 +208,11 @@ alt-shift-q = 'move-node-to-monitor --focus-follows-window 1'
 alt-shift-w = 'move-node-to-monitor --focus-follows-window 2'
 alt-shift-e = 'move-node-to-monitor --focus-follows-window 3'
 
-alt-rightSquareBracket  = 'exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around next'
-alt-leftSquareBracket   = 'exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around prev'
-alt-shift-rightSquareBracket    = 'move-node-to-workspace --focus-follows-window --wrap-around next'
-alt-shift-leftSquareBracket     = 'move-node-to-workspace --focus-follows-window --wrap-around prev'
+# usecase not good enough
+# alt-rightSquareBracket  = 'exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around next'
+# alt-leftSquareBracket   = 'exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around prev'
+# alt-shift-rightSquareBracket    = 'move-node-to-workspace --focus-follows-window --wrap-around next'
+# alt-shift-leftSquareBracket     = 'move-node-to-workspace --focus-follows-window --wrap-around prev'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 
