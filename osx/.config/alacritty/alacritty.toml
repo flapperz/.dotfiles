@@ -57,7 +57,8 @@ multiplier = 3
 blur = true
 decorations = "Full"
 dynamic_title = true
-opacity = 0.85
+# opacity = 0.85
+opacity = 0.95
 option_as_alt = "OnlyLeft"
 title = "Alacritty"
 # padding = { x = 16, y = 26 }
@@ -72,4 +73,15 @@ padding = { x = 8, y = 0 }
 # import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
 # import = ["~/.config/alacritty/themes/themes/moonlight_kc.toml"]
 # import = ["~/.config/alacritty/themes/themes/ayu_mirage.toml"]
-import = ["~/.config/alacritty/themes/themes/catppuccin.toml"]
+# import = ["~/.config/alacritty/themes/themes/catppuccin.toml"]
+# import = ["~/.config/alacritty/themes/themes/everforest_dark.toml"]
+# import = ["~/.config/alacritty/themes/themes/iterm.toml"]
+# import = ["~/.config/alacritty/themes/themes/snazzy.toml"]
+# import = ["~/.config/alacritty/themes/themes/pencil_dark.toml"]
+# import = ["~/.config/alacritty/themes/themes/material_theme.toml"]
+# import = ["~/.config/alacritty/themes/themes/kanagawa_wave.toml"]
+# import = ["~/.config/alacritty/themes/themes/doom_one.toml"]
+import = ["~/.config/alacritty/themes/themes/github_dark_colorblind.toml"]
+
+# import = ["~/.config/alacritty/themes/themes/pencil_light.toml"]
+# import = ["~/.config/alacritty/themes/themes/papertheme.toml"]
