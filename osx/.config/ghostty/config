@@ -1,0 +1,26 @@
+theme = dark:UltraDark,light:PencilLight
+theme = tokyonight
+
+font-family = "MesloLGMDZ Nerd Font Mono"
+font-style = "Regular"
+font-size = 13
+font-thicken = true
+
+macos-icon = official
+macos-secure-input-indication = true
+
+background-opacity = 0.85
+background-blur = true
+
+
+window-padding-x = 8
+
+#
+# -- functionality
+#
+
+# keybind = global:cmd+escape=toggle_quick_terminal
+# quick-terminal-animation-duration = 0
+# quick-terminal-space-behavior = remain
+
+quit-after-last-window-closed = true
