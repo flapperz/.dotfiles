@@ -6,12 +6,13 @@ font-style = "Regular"
 font-size = 13
 font-thicken = true
 
+# alpha-blending = linear-corrected
+
 macos-icon = official
 macos-secure-input-indication = true
 
 background-opacity = 0.85
 background-blur = true
-
 
 window-padding-x = 8
 
@@ -24,3 +25,7 @@ window-padding-x = 8
 # quick-terminal-space-behavior = remain
 
 quit-after-last-window-closed = true
+
+cursor-style = bar
+cursor-style-blink = false
+shell-integration-features = no-cursor
