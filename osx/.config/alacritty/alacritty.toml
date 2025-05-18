@@ -8,7 +8,7 @@ style = { shape = "Beam", blinking = "On" }
 vi_mode_style = { shape = "Block", blinking = "On" }
 blink_interval = 500
 blink_timeout = 0
-thickness = 0.35
+thickness = 0.25
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -50,20 +50,20 @@ key = "N"
 mods = "Command"
 
 [scrolling]
-history = 4096
+history = 50000
 multiplier = 3
 
 [window]
 blur = true
 decorations = "Full"
 dynamic_title = true
-# opacity = 0.85
-opacity = 0.95
+opacity = 0.85
+# opacity = 0.95
 option_as_alt = "OnlyLeft"
 title = "Alacritty"
 # padding = { x = 16, y = 26 }
 # padding = { x = 16, y = 16 }
-padding = { x = 8, y = 0 }
+# padding = { x = 8, y = 0 }
 
 [general]
 # themes
