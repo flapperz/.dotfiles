@@ -41,16 +41,18 @@ done
 # <<< ---- lazy load conda ----
 
 # this add 0.02 s.
-autoload -U compinit
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-# for dump in ${ZDOTDIR}/.zcompdump(N.mh+24); do
-#     compinit
-# done
-# compinit -C
-compinit
-_comp_options+=(globdots)
+# old completion
+
+# autoload -U compinit
+# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+# zstyle ':completion:*' menu select
+# zmodload zsh/complist
+# # for dump in ${ZDOTDIR}/.zcompdump(N.mh+24); do
+# #     compinit
+# # done
+# # compinit -C
+# compinit
+# _comp_options+=(globdots)
 
 ADOTDIR=$HOME/.config/zsh/antigens
 source $HOME/.config/zsh/antigen.zsh
@@ -61,24 +63,53 @@ antigen theme $THEME
 source ~/.config/p10k/.p10k.zsh
 
 source <(fzf --zsh)
-# Preview file content using bat (https://github.com/sharkdp/bat)
-export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export FZF_DEFAULT_OPTS="--style minimal"
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview '([[ -d {} ]] && eza --tree --color=always {} | head -200) || fzf-preview.sh {}'
+  --bind 'focus:transform-header:file --brief {}'"
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
+  # --color header:italic
+  # --header '^Y: copy command into clipboard'"
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'eza --tree --color=always {} | head -200'"
 
 _fzf_comprun() {
   local command=$1
   shift
 
   case "$command" in
-    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    cd)           fzf --preview 'eza -1 --color=always {} | head -200' "$@" ;;
     export|unset) fzf --preview "eval 'echo $'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
     *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
 
+setopt globdots
+### fzf-tab plugin settings
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+
+zstyle ':fzf-tab:*' fzf-bindings 'ctrl-y:toggle'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
 antigen bundle ael-code/zsh-colored-man-pages
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+antigen bundle Aloxaf/fzf-tab
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting # should be last bundle
 antigen apply
