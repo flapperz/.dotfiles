@@ -90,7 +90,7 @@ _fzf_comprun() {
   esac
 }
 
-setopt globdots
+# setopt globdots
 ### fzf-tab plugin settings
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
