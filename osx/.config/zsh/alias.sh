@@ -1,3 +1,6 @@
+alias tms="tmux-sessionizer"
+alias vim="nvim"
+
 alias cdsrc="cd ~/Source"
 alias cdmn="cd ~/Minervia"
 
@@ -13,8 +16,14 @@ alias ll='ls -alF'
 alias la='ls -A'
 
 alias gg='git-graph'
-alias gga='git add'
-alias ggc='git commit'
 alias ggmk='python /Users/flap/Source/git-magik/git-magik.py'
 
+# python
 alias act="conda activate"
+alias venv="source .venv/bin/activate"
+
+finder() {
+    open .
+}
+zle -N finder
+bindkey '^f' finder
