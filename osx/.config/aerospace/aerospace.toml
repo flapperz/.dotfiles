@@ -54,7 +54,7 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
 if.app-id = 'com.riotgames.LeagueofLegends.LeagueClientUx'
-run = ['layout floating']
+run = ['layout floating', 'move-node-to-workspace 10']
 
 [[on-window-detected]]
 if.app-id = 'com.cisco.anyconnect.gui'
@@ -73,8 +73,12 @@ run = ['layout floating']
 #
 
 [[on-window-detected]]
-if.app-name-regex-substring = '^(Brave Browser|Zen Browser|Safari)$'
+if.app-name-regex-substring = '^(Zen Browser|Safari)$'
 run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Brave Browser$'
+run = ['move-node-to-workspace 9']
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^(Notion|Obsidian|Siyuan)$'
@@ -85,12 +89,12 @@ if.app-name-regex-substring = '^(Discord|Line)$'
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
-if.app-name-regex-substring = '^Code$'
 run = [ 'move-node-to-workspace 5']
+if.app-name-regex-substring = '^Code$'
 
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
-run = [ 'move-node-to-workspace 6' ]
+run = [ 'move-node-to-workspace 7' ]
 
 [[on-window-detected]]
 if.app-name-regex-substring = '^(Finder)$'
