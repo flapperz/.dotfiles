@@ -10,8 +10,8 @@ blink_interval = 500
 blink_timeout = 0
 thickness = 0.25
 
-[colors]
-draw_bold_text_with_bright_colors = true
+# [colors]
+# draw_bold_text_with_bright_colors = true
 
 [colors.cursor]
 cursor = "CellForeground"
@@ -58,19 +58,16 @@ blur = true
 decorations = "Full"
 dynamic_title = true
 opacity = 0.85
-# opacity = 0.95
 option_as_alt = "OnlyLeft"
 title = "Alacritty"
-# padding = { x = 16, y = 26 }
-# padding = { x = 16, y = 16 }
-# padding = { x = 8, y = 0 }
+padding = { x = 8, y = 0 }
 
 [general]
 # themes
 # import = ["~/.config/alacritty/themes/themes/palenight.toml"]
 # import = ["~/.config/alacritty/themes/themes/moonlight_ii_vscode.toml"]
 # import = ["~/.config/alacritty/themes/themes/nightfox.toml"]
-# import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
+import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
 # import = ["~/.config/alacritty/themes/themes/moonlight_kc.toml"]
 # import = ["~/.config/alacritty/themes/themes/ayu_mirage.toml"]
 # import = ["~/.config/alacritty/themes/themes/catppuccin.toml"]
@@ -81,7 +78,8 @@ title = "Alacritty"
 # import = ["~/.config/alacritty/themes/themes/material_theme.toml"]
 # import = ["~/.config/alacritty/themes/themes/kanagawa_wave.toml"]
 # import = ["~/.config/alacritty/themes/themes/doom_one.toml"]
-import = ["~/.config/alacritty/themes/themes/github_dark_colorblind.toml"]
+# import = ["~/.config/alacritty/themes/themes/github_dark_colorblind.toml"]
+# import = ["~/.config/alacritty/themes/themes/blood_moon.toml"]
 
 # import = ["~/.config/alacritty/themes/themes/pencil_light.toml"]
 # import = ["~/.config/alacritty/themes/themes/papertheme.toml"]
