@@ -118,31 +118,7 @@ antigen apply
 export LESS="--incsearch --ignore-case --HILITE-UNREAD --status-column --LONG-PROMPT -N"
 export BAT_THEME=ansi
 
-# aliases
-alias ls='ls --color=auto'
-alias cdsrc="cd ~/Source"
-# alias cdgrf="cd ~/Graffity"
-alias cdmn="cd ~/Minervia"
-
-alias cdback="cd ~/Minervia/RSAPP/RSAPP-backend"
-alias cdbackback="cd ~/Minervia/RSAPP/RSAPP-backend/backend"
-alias cdfront="cd ~/Minervia/RSAPP/RSAPP-frontend-new"
-alias cdleg="cd ~/Minervia/RSAPP/rsapp-legacy"
-
-alias cdconf="cd ~/.dotfiles/osx/.config"
-
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias gg='git-graph'
-alias gga='git add'
-alias ggc='git commit'
-alias ggmk='python /Users/flap/Source/git-magik/git-magik.py'
-
-alias act="conda activate"
-
-# alias ls="eza --oneline --git --icons=auto --color=auto"
+source "$ZDOTDIR/alias.sh"
 
 LESSPIPE=`which src-hilite-lesspipe.sh`
 alias lessh='LESSOPEN="| ${LESSPIPE} %s" less -r'
