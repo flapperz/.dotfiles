@@ -52,6 +52,13 @@ vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d', { noremap = true })
+vim.keymap.set(
+	{ "n", "v" },
+	"<leader>c",
+	":let @+=@0",
+	{ noremap = true, desc = "Copy last yanked text to system clipboard" }
+)
+
 -- vim.keymap.set({ 'n' }, '<leader>sf', function()
 --   vscode.action 'workbench.action.quickOpen'
 -- end)
@@ -64,6 +71,27 @@ vim.keymap.set("n", "<leader>j", next_problem)
 vim.keymap.set("n", "<C-j>", next_problem_in_files)
 vim.keymap.set("n", "<leader>k", prev_problem)
 vim.keymap.set("n", "<C-k>", prev_problem_in_files)
+
+-- -------
+-- harpoon
+-- -------
+vim.keymap.set("n", "<leader>ha", function()
+	vscode.action("vscode-harpoon.addEditor");
+end, { desc = "harpoon add" })
+vim.keymap.set("n", "<leader>hp", function()
+	vscode.action("vscode-harpoon.editorQuickPick")
+end, { desc = "harpoon quick pick" })
+vim.keymap.set("n", "<leader>he", function()
+	vscode.action("vscode-harpoon.editEditors")
+end, { desc = "harpoon edit editors" })
+vim.keymap.set("n", "<leader>hh", function()
+	vscode.action("vscode-harpoon.gotoPreviousHarpoonEditor")
+end, { desc = "harpoon goto previous editor" })
+for i = 1, 9 do -- You can extend this range if you need more direct access
+	vim.keymap.set("n", "<leader>h" .. i, function()
+		vscode.action("vscode-harpoon.gotoEditor" .. i)
+	end, { desc = "harpoon go to file " .. i })
+end
 
 vim.keymap.set("n", "<leader>fd", function()
 	vscode.action("editor.action.formatDocument")
@@ -126,19 +154,6 @@ require("lazy").setup({
 			require("mini.surround").setup()
 		end,
 	},
-	-- {
-	-- 	"chrisgrieser/nvim-spider",
-	-- 	lazy = true,
-	-- 	config = function()
-	-- 		require("spider").setup({
-	-- 			skipInsignificantPunctuation = true,
-	-- 			subwordMovement = false,
-	-- 		})
-	-- 		vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
-	-- 		vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
-	-- 		vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
-	-- 	end,
-	-- },
 	{
 		"bkad/CamelCaseMotion",
 		init = function()
