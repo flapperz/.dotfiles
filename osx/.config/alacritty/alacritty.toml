@@ -54,10 +54,10 @@ history = 50000
 multiplier = 3
 
 [window]
-blur = true
-decorations = "Full"
+decorations = "Buttonless"
 dynamic_title = true
-opacity = 0.85
+blur = true
+opacity = 0.90
 option_as_alt = "OnlyLeft"
 title = "Alacritty"
 padding = { x = 8, y = 0 }
