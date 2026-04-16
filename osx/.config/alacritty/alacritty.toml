@@ -54,7 +54,8 @@ history = 50000
 multiplier = 3
 
 [window]
-decorations = "Buttonless"
+# decorations = "Buttonless"
+decorations = "Full"
 dynamic_title = true
 blur = true
 opacity = 0.90
@@ -64,10 +65,12 @@ padding = { x = 8, y = 0 }
 
 [general]
 # themes
+# import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
+import = ["~/.config/alacritty/themes/themes/dracula_plus.toml"]
+
 # import = ["~/.config/alacritty/themes/themes/palenight.toml"]
 # import = ["~/.config/alacritty/themes/themes/moonlight_ii_vscode.toml"]
 # import = ["~/.config/alacritty/themes/themes/nightfox.toml"]
-import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
 # import = ["~/.config/alacritty/themes/themes/moonlight_kc.toml"]
 # import = ["~/.config/alacritty/themes/themes/ayu_mirage.toml"]
 # import = ["~/.config/alacritty/themes/themes/catppuccin.toml"]
