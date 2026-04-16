@@ -19,7 +19,6 @@ alias gg='git-graph'
 alias ggmk='python /Users/flap/Source/git-magik/git-magik.py'
 
 # python
-alias act="conda activate"
 alias venv="source .venv/bin/activate"
 
 finder() {
